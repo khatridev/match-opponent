@@ -1,0 +1,15 @@
+# Sample YAML configuration for a team table service
+
+teams:
+  - name: "KKR"
+    matches:
+      - wins:
+        - RR
+        - RCB
+        - KKR
+      - losses:
+        - DC
+        - GT
+settings:
+  max_teams: 10
+  allow_duplicates: false
