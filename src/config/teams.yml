@@ -1,7 +1,7 @@
 # Sample YAML configuration for a team table service
 
 teams:
-  - name: "KKR"
+  - name: KKR
     matches:
       - wins:
         - RR
@@ -10,6 +10,18 @@ teams:
       - losses:
         - DC
         - GT
+      - suspend:
+        - MI
+  - name: SRH
+    matches:
+      - wins:
+        - GT
+        - MI
+      - losses:
+        - DC
+        - RCB
+      - suspend:
+        - PBKS
 settings:
   max_teams: 10
   allow_duplicates: false

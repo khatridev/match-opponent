@@ -1,27 +1,31 @@
-import { createServer } from 'http';
-import { readFile } from 'fs';
-import { join } from 'path';
+import express from 'express';
+import path from 'path';
 import { fileURLToPath } from 'url';
+import yaml from 'js-yaml';
+import fs from 'fs';
+
+const app = express();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PORT = 3000;
+app.use(express.static(path.join(__dirname, 'public')));
 
-const server = createServer((req, res) => {
-		const __dirname = fileURLToPath(new URL('.', import.meta.url));
-		const filePath = join(__dirname, 'views/index.html');
-		console.log(__dirname, filePath);
-		console.log(new URL('.', import.meta.url),filePath)
-		readFile(filePath, 'utf8', (err, data) => {
-			if (err) {
-				res.writeHead(500, { 'Content-Type': 'text/plain' });
-				res.end('Internal Server Error');
-			} else {
-				res.writeHead(200, { 'Content-Type': 'text/html' });
-				res.end(data);
-			}
-		});
-	
-});
 
-server.listen(PORT, () => {
+app.get('/',(req,res)=>{
+	res.sendFile(path.join(__dirname,'public','views','index.html'));
+})
+
+app.get('/api/config', (req, res) => {
+	try {
+		const fileContents = fs.readFileSync('./src/config/teams.yml');
+		const data = yaml.load(fileContents);
+		res.json(data);
+	} catch (e) {
+		console.error(e);
+		res.status(500).json({ error: 'Failed to load YAML' });
+	}
+})
+
+app.listen(PORT, () => {
 	console.log(`Server is running at http://localhost:${PORT}`);
 });
