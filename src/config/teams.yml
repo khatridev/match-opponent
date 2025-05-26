@@ -3,25 +3,42 @@
 teams:
   - name: KKR
     matches:
-      - wins:
-        - RR
-        - RCB
-        - KKR
-      - losses:
-        - DC
-        - GT
-      - suspend:
-        - MI
+      - opponent: RR
+        score: 2
+      - opponent: RCB
+        score: 2
+      - opponent: KKR
+        score: 2
+      - opponent: DC
+        score: 0
+      - opponent: GT
+        score: 0
+      - opponent: MI
+        score: 1
   - name: SRH
     matches:
-      - wins:
-        - GT
-        - MI
-      - losses:
-        - DC
-        - RCB
-      - suspend:
-        - PBKS
+      - opponent: GT
+        score: 2
+      - opponent: MI
+        score: 2
+      - opponent: DC
+        score: 0
+      - opponent: RR
+        score: 0
+      - opponent: PBKS
+        score: 1
+  - name: RR
+    matches:
+      - opponent: KKR
+        score: 0
+      - opponent: SRH
+        score: 2
+      - opponent: DC
+        score: 0
+      - opponent: RCB
+        score: 0
+      - opponent: PBKS
+        score: 1
 settings:
   max_teams: 10
   allow_duplicates: false
